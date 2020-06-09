@@ -22,3 +22,9 @@ class LoginPage(BasePage):
                                                                                   ' is not present'
         assert self.is_element_present(*LoginPageLocators.REPEAT_PASSWORD), 'Repeat password for registration' \
                                                                             ' is not present'
+
+    def register_new_user(self, email, password):
+        self.browser.find_element(*LoginPageLocators.REGISTRATION_EMAIL).send_keys(f'{email}')
+        self.browser.find_element(*LoginPageLocators.REGISTRATION_PASSWORD).send_keys(f'{password}')
+        self.browser.find_element(*LoginPageLocators.REPEAT_PASSWORD).send_keys(f'{password}')
+        self.browser.find_element(*LoginPageLocators.REGISTRATION_BTN).click()
